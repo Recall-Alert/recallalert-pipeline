@@ -103,7 +103,7 @@ def parse_rows(zip_bytes: bytes) -> list[dict]:
     with zipfile.ZipFile(io.BytesIO(zip_bytes)) as zf:
         # Find the data file (name varies slightly between releases)
         names = zf.namelist()
-        data_file = next((n for n in names if n.upper().endswith(".txt") and "RCL" in n.upper()), None)
+        data_file = next((n for n in names if n.upper().endswith(".txt")), None)
         if not data_file:
             raise ValueError(f"Could not find recall data file in zip. Contents: {names}")
         log.info(f"Reading {data_file} from zip ...")
